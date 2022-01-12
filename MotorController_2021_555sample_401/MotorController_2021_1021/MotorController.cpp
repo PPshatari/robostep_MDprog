@@ -104,6 +104,7 @@ void MotorController::turn(double duty)
 void MotorController::Sc(double target_omega_input)
 {
     double duty=calSc(target_omega_input);
+    check_duty = duty;
     turn(duty);
 
 }

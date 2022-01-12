@@ -34,6 +34,7 @@ protected:
 public:
     MotorController(PinName motor_p_, PinName motor_n_,double dt, Ec &ec, CalPID &sc_, CalPID &ac_duty, CalPID &ac_omega);//引数は下行
     //モーター正転、逆転、周期[s]、エンコーダ、速度制御用のPID、角度制御のPID、速度制御利用の角度制御のPID
+    double check_duty;
 
 //////////////////////////////////////////各クラスのコンストラクタ引数で設定はされているので呼び出しは不要。変更したい場合などに
     void period(double s);//pwm周期設定用関数
