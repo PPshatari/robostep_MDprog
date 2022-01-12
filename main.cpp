@@ -82,7 +82,7 @@ int main ()
     motor.setAccelMax(400);
     wait(0.5);
     while(1) {
-//        printf("%d\r\n",ec_steer.getCount());
+       printf("%d\r\n",ec_steer.getCount());
 //        wait(0.5);
 //    }
     int state=0;
