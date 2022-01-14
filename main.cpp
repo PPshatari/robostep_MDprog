@@ -24,7 +24,7 @@ DigitalOut led[]= {
 };
 
 //CalPID speed_pid(0.003,0,0.0000130,DELTA_T,DUTY_MAX);    //速度制御のPID
-CalPID speed_pid(0.00009664,0.01933,0.000001208,DELTA_T,DUTY_MAX);    //速度制御のPID
+CalPID speed_pid(0.009664,0.01933,0.000001208,DELTA_T,DUTY_MAX);    //速度制御のPID
 CalPID angle_duty_pid(0,0,0,DELTA_T,DUTY_MAX);          //
 CalPID angle_omega_pid(4,0,0.04,DELTA_T,OMEGA_MAX);//角度制御のPID
 
