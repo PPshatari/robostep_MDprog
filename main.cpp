@@ -64,7 +64,7 @@ void printData()
 
 void loop()
 {
-    //motor.AcOmega(angle_steerA);
+    motor.AcOmega(angle_steerA);
     motor.Sc(omega_steerA);
 
     saveData();
@@ -90,8 +90,8 @@ int main ()
     while(1) {
         if(state==0) {
             float input_target=interface.AskNum("put target:");
-            // angle_steerA=input_target;
-            omega_steerA=input_target;
+            angle_steerA=input_target;
+            //omega_steerA=input_target;
 
             state++;
             timer_loop.reset();
