@@ -31,7 +31,7 @@ CalPID angle_omega_pid(4,0,0.04,DELTA_T,OMEGA_MAX);//角度制御のPID
 DigitalOut out(PB_4);
 DigitalOut gnd(PB_10);
 
-Ec1multi ec_steer(PB_5,PB_3,RESOLUTION,GEER_EC);
+Ec4multi ec_steer(PB_5,PB_3,RESOLUTION,GEER_EC);
 MotorController motor(PA_5,PA_6,DELTA_T,ec_steer,speed_pid,angle_duty_pid,angle_omega_pid);
 
 float angle_steerA=0;
@@ -46,7 +46,7 @@ void saveData()
 {
     if(data_count<NUM_DATA) {
         data_angle[data_count]=motor.getAngle();
-        data_omega[data_count]=ec_steer.getOmega();
+        // data_omega[data_count]=ec_steer.getOmega();
         data_angle[data_count] = motor.check_duty;
         data_count++;
     }
@@ -90,7 +90,7 @@ int main ()
     while(1) {
         if(state==0) {
             float input_target=interface.AskNum("put target:");
-            angle_steerA=input_target;
+            // angle_steerA=input_target;
             omega_steerA=input_target;
 
             state++;
