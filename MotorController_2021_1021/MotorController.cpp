@@ -151,6 +151,8 @@ void MotorController::AcOmega(double target_angle)
 
     double duty=calSc(omega)+duty_offset_;
     //duty=calSc(omega);
+
+    check_duty = duty;
     turn(duty);
 }
 void MotorController::stop()
