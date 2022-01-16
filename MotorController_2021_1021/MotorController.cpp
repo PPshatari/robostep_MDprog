@@ -132,6 +132,7 @@ double MotorController::calSc(double target_omega_input)
     } else
         duty_ = 0;
 
+    duty_ = (abs(duty_)>1)? duty_/abs(duty_);
     pre_target_omega=target_omega;
     return duty_;
 }
