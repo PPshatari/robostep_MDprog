@@ -45,9 +45,10 @@ float data_omega[NUM_DATA]= {};
 void saveData()
 {
     if(data_count<NUM_DATA) {
-        // data_angle[data_count]=motor.getAngle();
-        data_omega[data_count]=ec_steer.getOmega();
-        data_angle[data_count] = motor.check_duty;
+        data_angle[data_count]=motor.getAngle();
+        // data_omega[data_count]=ec_steer.getOmega();
+        data_omega[data_count]= motor.check_duty;
+        // data_angle[data_count] = motor.check_duty;
         data_count++;
     }
 }
