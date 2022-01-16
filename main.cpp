@@ -65,7 +65,7 @@ void printData()
 void loop()
 {
     motor.AcOmega(angle_steerA);
-    motor.Sc(omega_steerA);
+    //motor.Sc(omega_steerA);
 
     saveData();
 }
