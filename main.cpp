@@ -79,7 +79,7 @@ int main ()
     out = 1;
     gnd = 0;
     
-    motor.setEquation(0.033974,0.013030,-0.033804,0.005965);//555
+    motor.setEquation(0.000581,0.000491,-0.001160,0.001249);//555
     motor.setAccelMax(400);
     wait(0.5);
     while(1) {
