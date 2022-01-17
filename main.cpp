@@ -42,13 +42,13 @@ float omega_steerA=0;
 int data_count=0;
 float data_angle[NUM_DATA]= {};
 float data_omega[NUM_DATA]= {};
+float data_duty[NUM_DATA] = {};
 void saveData()
 {
     if(data_count<NUM_DATA) {
+        data_duty[data_count] = motor.check_duty;
         data_angle[data_count]=motor.getAngle();
-        // data_omega[data_count]=ec_steer.getOmega();
-        data_omega[data_count]= motor.check_duty;
-        // data_angle[data_count] = motor.check_duty;
+        data_omega[data_count]=ec_steer.getOmega();
         data_count++;
     }
 }
@@ -56,7 +56,7 @@ void printData()
 {
     motor.stop();
     for(int i=0; i<data_count; i++) {
-        pc.printf("%f\t%f\r\n",data_angle[i],data_omega[i]);
+        pc.printf("%f\t%f\t%f\r\n",data_duty[i],data_angle[i],data_omega[i]);
 /*        wait(0.01);*/
     }
     data_count=0;
@@ -65,8 +65,8 @@ void printData()
 
 void loop()
 {
-    motor.AcOmega(angle_steerA);
-    //motor.Sc(omega_steerA);
+    //motor.AcOmega(angle_steerA);
+    motor.Sc(omega_steerA);
 
     saveData();
 }
@@ -92,7 +92,7 @@ int main ()
         if(state==0) {
             float input_target=interface.AskNum("put target:");
             angle_steerA=input_target;
-            //omega_steerA=input_target;
+            omega_steerA=input_target;
 
             state++;
             timer_loop.reset();
