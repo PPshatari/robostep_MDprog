@@ -8,7 +8,7 @@
 #define RESOLUTION 500
 #define DELTA_T 0.001
 #define DUTY_MAX 0.8
-#define OMEGA_MAX 20
+#define OMEGA_MAX 15
 
 #define TIME_STOP 4.0
 
