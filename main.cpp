@@ -114,7 +114,7 @@ int main ()
             if((double)timer_loop.read()>DELTA_T) {//タイマーで制御周期を作っている
                 loop();
                 timer_loop.reset();
-                if(motor.getAngle()==past_angle){
+                if(motor.getAngle()==past_angle&&((motor.getAngle()-input_target)<0.01)){
                     complete = 1;
                 }
             }
