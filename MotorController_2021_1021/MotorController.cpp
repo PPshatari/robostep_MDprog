@@ -93,10 +93,10 @@ void MotorController::setAccelMax(double a_max)
 }
 void MotorController::turn(double duty)
 {
-    if (duty<1.0&&duty >= 0) {
+    if (duty<=1.0&&duty >= 0) {
         motor_p = duty;
         motor_n = 0;
-    } else if (duty < 0&&duty>-1.0) {
+    } else if (duty < 0&&duty>=-1.0) {
         motor_p = 0;
         motor_n = -duty;
     }
