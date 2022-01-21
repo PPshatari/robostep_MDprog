@@ -129,8 +129,18 @@ double MotorController::calSc(double target_omega_input)
     } else if (target_omega < -0.0) {
         Db_ += Cb_ * pid;
         duty_ = Cb_ * target_omega + Db_;
-    } else
+    } else{
         duty_ = 0;
+    }
+
+//duty_の値の絶対値が1を超えないようにする
+    if(1 < duty_){
+        duty_ = 1;
+    }else if ( duty_ < -1)
+    {
+        duty_ = -1;
+    }
+    
 
     pre_target_omega=target_omega;
     return duty_;
