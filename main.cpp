@@ -24,7 +24,7 @@ DigitalOut led[]= {
 };
 
 //CalPID speed_pid(0.003,0,0.0000130,DELTA_T,DUTY_MAX);    //速度制御のPID
-CalPID speed_pid(0.009664,0.01933,0.000001208,DELTA_T,DUTY_MAX);    //速度制御のPID
+CalPID speed_pid(0.000151,0.00302,0.000001888,DELTA_T,DUTY_MAX);    //速度制御のPID
 CalPID angle_duty_pid(0,0,0,DELTA_T,DUTY_MAX);          //
 CalPID angle_omega_pid(4,0.03933,0.000001208,DELTA_T,OMEGA_MAX);//角度制御のPID
 
@@ -79,7 +79,7 @@ int main ()
     out = 1;
     gnd = 0;
     
-    motor.setEquation(0.000581,0.000491,-0.001160,0.001249);//555
+    motor.setEquation(0.001391,0.016545,-0.001861,0.000664);//555
     motor.setAccelMax(400);
     wait(0.5);
     while(1) {
