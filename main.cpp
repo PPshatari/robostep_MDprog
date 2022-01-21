@@ -79,7 +79,8 @@ int main ()
     out = 1;
     gnd = 0;
     
-    motor.setEquation(0.001391,0.016545,-0.001861,0.000664);//555
+    //motor.setEquation(0.001391,0.016545,-0.001861,0.000664);//555 Ec4mulitiで計測
+    motor.setEquation(0.000585,0.002436,-0.001167,0.001483);//555 Ec1multiで計測    
     motor.setAccelMax(400);
     wait(0.5);
     while(1) {
