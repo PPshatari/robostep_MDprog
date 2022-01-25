@@ -36,11 +36,6 @@ MotorController motor(PA_5,PA_6,DELTA_T,ec_steer,speed_pid,angle_duty_pid,angle_
 
 float angle_steerA=0;
 float omega_steerA=0;
-
-///////目標達成時早めに終了するための
-int complete = 0;//時間内でも、目標角度に到達していたら、ターゲットを聞く段階に移動する
-float past_angle = 0.0;//前回の角度を保存する
-
  
 
 /////////////////////////////////////////////////////////////データ記録まわり
@@ -75,7 +70,6 @@ void loop()
     motor.Sc(omega_steerA);
 
     saveData();
-    past_angle = motor.getAngle();
 }
 
 Timer timer_loop;
@@ -96,8 +90,6 @@ int main ()
 //        wait(0.5);
 //    }
     int state=0;
-    int complete = 0;//時間内でも、目標角度に到達していたら、ターゲットを聞く段階に移動する
-    float past_angle = 0.0;//前回の角度を保存する
  
     while(1) {
         if(state==0) {
@@ -114,15 +106,11 @@ int main ()
             if((double)timer_loop.read()>DELTA_T) {//タイマーで制御周期を作っている
                 loop();
                 timer_loop.reset();
-                if(motor.getAngle()==past_angle&&((motor.getAngle()-input_target)<0.01)){
-                    complete = 1;
-                }
             }
-            if(((double)timer_stop.read()>TIME_STOP)||(complete == 1)) {//何秒かしたら停止,ログを表示
+            if(((double)timer_stop.read()>TIME_STOP)) {//何秒かしたら停止,ログを表示
                 motor.stop();
                 printData();
                 state=0;
-                complete = 0;
             }
         }
         //wait_us(0);
