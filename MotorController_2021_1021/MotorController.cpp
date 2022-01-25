@@ -15,7 +15,7 @@ MotorController::MotorController(PinName motor_p_, PinName motor_n_,double dt, E
     angle_offset=0;
     calibration(0);
     setAccelMax(200);
-    setDutyOffset(0);
+    setDutyOffset(0.025);
     pre_target_omega=0;
 }
 double MotorController::getAngle()
