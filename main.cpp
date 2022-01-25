@@ -24,14 +24,12 @@ DigitalOut led[]= {
 };
 
 //CalPID speed_pid(0.003,0,0.0000130,DELTA_T,DUTY_MAX);    //速度制御のPID
-CalPID speed_pid(0.0151,0.00302,0.000001888,DELTA_T,DUTY_MAX);    //速度制御のPID
+CalPID speed_pid(0.151,0.00302,0.000001888,DELTA_T,DUTY_MAX);    //速度制御のPID
 CalPID angle_duty_pid(0,0,0,DELTA_T,DUTY_MAX);          //
 CalPID angle_omega_pid(4,0.03933,0.000001208,DELTA_T,OMEGA_MAX);//角度制御のPID
 
-DigitalOut out(PB_4);
-DigitalOut gnd(PB_10);
 
-Ec4multi ec_steer(PB_5,PB_3,RESOLUTION,GEER_EC);
+Ec4multi ec_steer(PB_3,PB_5,RESOLUTION,GEER_EC);
 MotorController motor(PA_5,PA_6,DELTA_T,ec_steer,speed_pid,angle_duty_pid,angle_omega_pid);
 
 float angle_steerA=0;
@@ -66,7 +64,7 @@ void printData()
 
 void loop()
 {
-    //motor.AcOmega(angle_steerA);
+    motor.AcOmega(angle_steerA);
     motor.Sc(omega_steerA);
 
     saveData();
@@ -77,8 +75,6 @@ Timer timer_stop;
 
 int main ()
 {
-    out = 1;
-    gnd = 0;
     
     //motor.setEquation(0.001391,0.016545,-0.001861,0.000664);//555 Ec4mulitiで計測
     motor.setEquation(0.000585,0.002436,-0.001167,0.001483);//555 Ec1multiで計測
@@ -109,7 +105,7 @@ int main ()
             }
             if(((double)timer_stop.read()>TIME_STOP)) {//何秒かしたら停止,ログを表示
                 motor.stop();
-                printData();
+                //printData();
                 state=0;
             }
         }
